@@ -1,9 +1,11 @@
 # VEDIS
 
+> CGO bindings to vedis
+
 ### Docs
 
-[godoc](http://godoc.org/github.com/icholy/vedis)
-[vedis](http://vedis.symisc.net/)
+* [godoc](http://godoc.org/github.com/icholy/vedis)  
+* [vedis](http://vedis.symisc.net/)
 
 ### Install
 
@@ -14,6 +16,8 @@ $ go get github.com/icholy/vedis
 ### Example
 
 ``` go
+package main
+
 import "github.com/icholy/vedis"
 import "fmt"
 

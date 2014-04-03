@@ -141,7 +141,9 @@ type Store struct{ p *C.vedis }
 
 func Open(name string) (*Store, error) {
 	var store Store
-	rc := C.vedis_open(&store.p, C.CString(name))
+	c_name := C.CString(name)
+	defer C.free(unsafe.Pointer(c_name))
+	rc := C.vedis_open(&store.p, c_name)
 	if rc != C.VEDIS_OK {
 		return nil, getError(rc)
 	}
@@ -172,7 +174,9 @@ func (s *Store) Rollback() error {
 }
 
 func (s *Store) Exec(cmd string) error {
-	rc := C.vedis_exec(s.p, C.CString(cmd), -1)
+	c_cmd := C.CString(cmd)
+	defer C.free(unsafe.Pointer(c_cmd))
+	rc := C.vedis_exec(s.p, c_cmd, -1)
 	if rc != C.VEDIS_OK {
 		return getError(rc)
 	}
